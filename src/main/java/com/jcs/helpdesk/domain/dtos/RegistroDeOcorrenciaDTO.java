@@ -1,13 +1,13 @@
 package com.jcs.helpdesk.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jcs.helpdesk.domain.Ticket;
+import com.jcs.helpdesk.domain.RegistroDeOcorrencia;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class TicketDTO implements Serializable {
+public class RegistroDeOcorrenciaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
@@ -38,11 +38,11 @@ public class TicketDTO implements Serializable {
     private String nomeTecnico;
     private String nomeCliente;
 
-    public TicketDTO() {
+    public RegistroDeOcorrenciaDTO() {
         super();
     }
 
-    public TicketDTO(Ticket obj) {
+    public RegistroDeOcorrenciaDTO(RegistroDeOcorrencia obj) {
         this.id = obj.getId();
         this.dataAbertura = obj.getDataAbertura();
         this.dataFechamento = obj.getDataFechamento();

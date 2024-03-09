@@ -2,7 +2,7 @@ package com.jcs.helpdesk.services;
 
 import com.jcs.helpdesk.domain.Cliente;
 import com.jcs.helpdesk.domain.Tecnico;
-import com.jcs.helpdesk.domain.Ticket;
+import com.jcs.helpdesk.domain.RegistroDeOcorrencia;
 import com.jcs.helpdesk.domain.enums.Perfil;
 import com.jcs.helpdesk.domain.enums.Prioridade;
 import com.jcs.helpdesk.domain.enums.Status;
@@ -33,7 +33,7 @@ public class DBService {
 
         Cliente cli1 = new Cliente(null, "Amanda Fernandes", "45082546082", "amandafer261102@mail.com", encoder.encode("123"));
 
-        Ticket sr1 = new Ticket(null, Prioridade.MEDIA, Status.ANDAMENTO, "SR-01", "Primeiro Ticket", tec1, cli1);
+        RegistroDeOcorrencia sr1 = new RegistroDeOcorrencia(null, Prioridade.MEDIA, Status.ANDAMENTO, "SR-01", "Primeiro RegistroDeOcorrencia", tec1, cli1);
 
         tecnicoRepository.saveAll(Arrays.asList(tec1));
         clienteRepository.saveAll(Arrays.asList(cli1));

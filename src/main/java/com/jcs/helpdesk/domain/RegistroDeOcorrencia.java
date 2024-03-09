@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-public class Ticket implements Serializable {
+public class RegistroDeOcorrencia implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -29,17 +29,17 @@ public class Ticket implements Serializable {
     private String observacoes;
 
     @ManyToOne
-    @JoinColumn(name= "tecnico_id")
+    @JoinColumn(name= "analista_id")
     private Tecnico tecnico;
 
     @ManyToOne
-    @JoinColumn(name= "cliente_id")
+    @JoinColumn(name= "associado_id")
     private Cliente cliente;
-    public Ticket(){
+    public RegistroDeOcorrencia(){
         super();
     }
 
-    public Ticket(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
+    public RegistroDeOcorrencia(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
         this.id = id;
         this.prioridade = prioridade;
         this.status = status;

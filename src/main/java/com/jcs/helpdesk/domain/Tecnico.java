@@ -16,7 +16,7 @@ public class Tecnico extends Pessoa {
 
     @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
-    private List<Ticket> tickets = new ArrayList<>();
+    private List<RegistroDeOcorrencia> tickets = new ArrayList<>();
 
     public Tecnico() {
         super();
@@ -39,11 +39,11 @@ public class Tecnico extends Pessoa {
         this.dataCriacao = obj.getDataCriacao();
     }
 
-    public List<Ticket> getTickets() {
+    public List<RegistroDeOcorrencia> getTickets() {
         return tickets;
     }
 
-    public void setTickets(List<Ticket> tickets) {
+    public void setTickets(List<RegistroDeOcorrencia> tickets) {
         this.tickets = tickets;
     }
 }
