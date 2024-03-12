@@ -50,10 +50,10 @@ public class RegistroDeOcorrenciaDTO implements Serializable {
         this.status = obj.getStatus().getCodigo();
         this.titulo = obj.getTitulo();
         this.observacoes = obj.getObservacoes();
-        this.tecnico = obj.getTecnico().getId();
-        this.cliente = obj.getCliente().getId();
-        this.nomeCliente = obj.getCliente().getNome();
-        this.nomeTecnico = obj.getTecnico().getNome();
+        this.tecnico = obj.getAnalista().getId();
+        this.cliente = obj.getAssociado().getId();
+        this.nomeCliente = obj.getAssociado().getNome();
+        this.nomeTecnico = obj.getAnalista().getNome();
     }
 
     public Integer getId() {
@@ -112,36 +112,36 @@ public class RegistroDeOcorrenciaDTO implements Serializable {
         this.observacoes = observacoes;
     }
 
-    public Integer getTecnico() {
-        return tecnico;
+    public Integer getAnalista() {
+        return analista;
     }
 
-    public void setTecnico(Integer tecnico) {
-        this.tecnico = tecnico;
+    public void setAnalista(Integer analista) {
+        this.analista = analista;
     }
 
-    public Integer getCliente() {
-        return cliente;
+    public Integer getAssociado() {
+        return associado;
     }
 
-    public void setCliente(Integer cliente) {
-        this.cliente = cliente;
+    public void setAssociado(Integer associado) {
+        this.associado = associado;
     }
 
     public String getNomeTecnico() {
         return nomeTecnico;
     }
 
-    public void setNomeTecnico(String nomeTecnico) {
-        this.nomeTecnico = nomeTecnico;
+    public void setNomeAnalista(String nomeAnalista) {
+        this.nomeAnalista = nomeAnalista;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    public String getNomeAssociado() {
+        return nomeAssociado;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public void setNomeAssociado(String nomeAssociado) {
+        this.nomeAssociado = nomeAssociado;
     }
 
 }

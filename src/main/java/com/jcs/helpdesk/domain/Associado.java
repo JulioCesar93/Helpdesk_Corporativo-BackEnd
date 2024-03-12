@@ -1,7 +1,7 @@
 package com.jcs.helpdesk.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.jcs.helpdesk.domain.dtos.ClienteDTO;
+import com.jcs.helpdesk.domain.dtos.AssociadoDTO;
 import com.jcs.helpdesk.domain.enums.Perfil;
 
 import javax.persistence.Entity;
@@ -11,24 +11,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-public class Cliente extends Pessoa {
+public class Associado extends Pessoa {
     private static final long serialVersionUID = 1L;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "cliente")
-    private List<RegistroDeOcorrencia> tickets = new ArrayList<>();
+    @OneToMany(mappedBy = "associado")
+    private List<RegistroDeOcorrencia> registroDeOcorrencia = new ArrayList<>();
 
-    public Cliente() {
+    public Associado() {
         super();
-        addPerfil(Perfil.CLIENTE);
+        addPerfil(Perfil.ASSOCIADO);
     }
 
-    public Cliente(Integer id, String nome, String cpf, String email, String senha) {
+    public Associado(Integer id, String nome, String cpf, String email, String senha) {
         super(id, nome, cpf, email, senha);
         addPerfil(Perfil.CLIENTE);
     }
 
-    public Cliente(ClienteDTO obj) {
+    public Associado(AssociadoDTO obj) {
         super();
         this.id = obj.getId();
         this.nome = obj.getNome();
@@ -40,10 +40,10 @@ public class Cliente extends Pessoa {
     }
 
     public List<RegistroDeOcorrencia> getTickets() {
-        return tickets;
+        return registroDeOcorrencias;
     }
 
-    public void setTickets(List<RegistroDeOcorrencia> tickets) {
-        this.tickets = tickets;
+    public void setTickets(List<RegistroDeOcorrencia> registroDeOcorrencia) {
+        this.registroDeOcorrencia = registroDeOcorrencias;
     }
 }

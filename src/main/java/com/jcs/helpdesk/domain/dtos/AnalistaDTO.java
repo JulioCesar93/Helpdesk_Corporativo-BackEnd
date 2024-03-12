@@ -1,7 +1,7 @@
 package com.jcs.helpdesk.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jcs.helpdesk.domain.Cliente;
+import com.jcs.helpdesk.domain.Analista;
 import com.jcs.helpdesk.domain.enums.Perfil;
 
 import javax.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ClienteDTO implements Serializable {
+public class AnalistaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected Integer id;
@@ -28,12 +28,12 @@ public class ClienteDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
 
-    public ClienteDTO() {
+    public AnalistaDTO() {
         super();
-        addPerfil(Perfil.CLIENTE);
+        addPerfil(Perfil.ASSOCIADO);
     }
 
-    public ClienteDTO(Cliente obj) {
+    public AnalistaDTO(Analista obj) {
         super();
         this.id = obj.getId();
         this.nome = obj.getNome();
@@ -42,7 +42,7 @@ public class ClienteDTO implements Serializable {
         this.senha = obj.getSenha();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
-        addPerfil(Perfil.CLIENTE);
+        addPerfil(Perfil.ASSOCIADO);
     }
 
     public Integer getId() {
