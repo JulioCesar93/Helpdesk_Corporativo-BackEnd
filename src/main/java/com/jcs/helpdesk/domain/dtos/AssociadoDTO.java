@@ -16,6 +16,9 @@ public class AssociadoDTO implements Serializable {
 
     protected Integer id;
     @NotNull(message = "Campo NOME obrigatório")
+    protected Integer matricula;
+    protected String gerenteMercado;
+    protected String gerenteVendas;
     protected String nome;
     @NotNull(message = "Campo CPF obrigatório")
     protected String cpf;
@@ -37,6 +40,9 @@ public class AssociadoDTO implements Serializable {
         super();
         this.id = obj.getId();
         this.nome = obj.getNome();
+        this.matricula = obj.getMatricula();
+        this.gerenteMercado = obj.getGerenteMercado();
+        this.gerenteVendas = obj.getGerenteVendas();
         this.cpf = obj.getCpf();
         this.email = obj.getEmail();
         this.senha = obj.getSenha();
@@ -99,5 +105,29 @@ public class AssociadoDTO implements Serializable {
 
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public Integer getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Integer matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getGerenteMercado() {
+        return gerenteMercado;
+    }
+
+    public void setGerenteMercado(String gerenteMercado) {
+        this.gerenteMercado = gerenteMercado;
+    }
+
+    public String getGerenteVendas() {
+        return gerenteVendas;
+    }
+
+    public void setGerenteVendas(String gerenteVendas) {
+        this.gerenteVendas = gerenteVendas;
     }
 }

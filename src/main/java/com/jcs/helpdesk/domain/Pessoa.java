@@ -19,12 +19,17 @@ public abstract class Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
+
+    @Column(unique = true)
+    protected Integer matricula;
     protected String nome;
 
     @CPF
     @Column(unique = true)
     protected String cpf;
 
+    protected String gerenteMercado;
+    protected String gerenteVendas;
     @Column(unique = true)
     protected String email;
     protected String senha;
@@ -36,18 +41,24 @@ public abstract class Pessoa implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
 
+
+
     public Pessoa() {
         super();
-        addPerfil(Perfil.CLIENTE);
+        addPerfil(Perfil.ASSOCIADO);
     }
 
-    public Pessoa(Integer id, String nome, String cpf, String email, String senha) {
+    public Pessoa(Integer id, String nome, String cpf, String email, String senha,
+                  Integer matricula, String gerenteMercado, String gerenteVendas) {
         this.id = id;
         this.nome = nome;
+        this.matricula = matricula;
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
-        addPerfil(Perfil.CLIENTE);
+        this.gerenteMercado = gerenteMercado;
+        this.gerenteVendas = gerenteMercado;
+        addPerfil(Perfil.ASSOCIADO);
     }
 
     public Integer getId() {
@@ -106,16 +117,40 @@ public abstract class Pessoa implements Serializable {
         this.dataCriacao = dataCriacao;
     }
 
+    public Integer getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Integer matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getGerenteMercado() {
+        return gerenteMercado;
+    }
+
+    public void setGerenteMercado(String gerenteMercado) {
+        this.gerenteMercado = gerenteMercado;
+    }
+
+    public String getGerenteVendas() {
+        return gerenteVendas;
+    }
+
+    public void setGerenteVendas(String gerenteVendas) {
+        this.gerenteVendas = gerenteVendas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pessoa pessoa = (Pessoa) o;
-        return id.equals(pessoa.id) && cpf.equals(pessoa.cpf);
+        return id.equals(pessoa.id) && matricula.equals(pessoa.matricula);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cpf);
+        return Objects.hash(id, matricula);
     }
 }

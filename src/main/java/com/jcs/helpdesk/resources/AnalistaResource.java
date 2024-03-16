@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/analistas")
 public class AnalistaResource {
 
-    //localhost:8080/analistas/1 Get id (tecnico)
+    //localhost:8080/analistas/1 Get id (analista)
 
     @Autowired
     private AnalistaService service;

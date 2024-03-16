@@ -29,14 +29,14 @@ public class RegistroDeOcorrenciaDTO implements Serializable {
     @NotNull(message = "O campo OBSERVAÇÕES é requerido")
     private String observacoes;
 
-    @NotNull(message = "O campo TECNICO é requerido")
-    private Integer tecnico;
+    @NotNull(message = "O campo ANALISTA é requerido")
+    private Integer analista;
 
-    @NotNull(message = "O campo CLIENTE é requerido")
-    private Integer cliente;
+    @NotNull(message = "O campo ASSOCIADO é requerido")
+    private Integer associado;
 
-    private String nomeTecnico;
-    private String nomeCliente;
+    private String nomeAnalista;
+    private String nomeAssociado;
 
     public RegistroDeOcorrenciaDTO() {
         super();
@@ -50,10 +50,10 @@ public class RegistroDeOcorrenciaDTO implements Serializable {
         this.status = obj.getStatus().getCodigo();
         this.titulo = obj.getTitulo();
         this.observacoes = obj.getObservacoes();
-        this.tecnico = obj.getAnalista().getId();
-        this.cliente = obj.getAssociado().getId();
-        this.nomeCliente = obj.getAssociado().getNome();
-        this.nomeTecnico = obj.getAnalista().getNome();
+        this.analista = obj.getAnalista().getId();
+        this.associado = obj.getAssociado().getId();
+        this.nomeAssociado = obj.getAssociado().getNome();
+        this.nomeAnalista = obj.getAnalista().getNome();
     }
 
     public Integer getId() {
@@ -128,8 +128,8 @@ public class RegistroDeOcorrenciaDTO implements Serializable {
         this.associado = associado;
     }
 
-    public String getNomeTecnico() {
-        return nomeTecnico;
+    public String getNomeAnalista() {
+        return nomeAnalista;
     }
 
     public void setNomeAnalista(String nomeAnalista) {

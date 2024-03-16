@@ -1,7 +1,7 @@
 package com.jcs.helpdesk.services;
 
-import com.jcs.helpdesk.domain.Cliente;
-import com.jcs.helpdesk.domain.Tecnico;
+import com.jcs.helpdesk.domain.Associado;
+import com.jcs.helpdesk.domain.Analista;
 import com.jcs.helpdesk.domain.RegistroDeOcorrencia;
 import com.jcs.helpdesk.domain.dtos.RegistroDeOcorrenciaDTO;
 import com.jcs.helpdesk.domain.enums.Prioridade;
@@ -21,9 +21,9 @@ public class RegistroDeOcorrenciaService {
     @Autowired
     private RegistroDeOcorrenciaRepository repository;
     @Autowired
-    private TecnicoService tecnicoService;
+    private AnalistaService analistaService;
     @Autowired
-    private ClienteService clienteService;
+    private AssociadoService associadoService;
 
     public RegistroDeOcorrencia findById(Integer id) {
         Optional<RegistroDeOcorrencia> obj = repository.findById(id);
@@ -35,7 +35,7 @@ public class RegistroDeOcorrenciaService {
     }
 
     public RegistroDeOcorrencia create(@Valid RegistroDeOcorrenciaDTO objDTO) {
-        return repository.save(newTicket(objDTO));
+        return repository.save(newRegistroDeOcorrencia(objDTO));
     }
 
     public RegistroDeOcorrencia update(Integer id, @Valid RegistroDeOcorrenciaDTO objDto) {
@@ -45,9 +45,9 @@ public class RegistroDeOcorrenciaService {
         return repository.save(oldObj);
     }
 
-    private RegistroDeOcorrencia newTicket(RegistroDeOcorrenciaDTO obj) {
-        Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
-        Cliente cliente = clienteService.findById(obj.getCliente());
+    private RegistroDeOcorrencia newRegistroDeOcorrencia(RegistroDeOcorrenciaDTO obj) {
+        Analista analista = analistaService.findById(obj.getAnalista());
+        Associado associado = associadoService.findById(obj.getAssociado());
 
         RegistroDeOcorrencia registroDeOcorrencia = new RegistroDeOcorrencia();
         if(obj.getId() != null) {
@@ -57,8 +57,8 @@ public class RegistroDeOcorrenciaService {
             registroDeOcorrencia.setDataFechamento(LocalDate.now());
         }
 
-        registroDeOcorrencia.setTecnico(tecnico);
-        registroDeOcorrencia.setCliente(cliente);
+        registroDeOcorrencia.setAnalista(analista);
+        registroDeOcorrencia.setAssociado(associado);
         registroDeOcorrencia.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
         registroDeOcorrencia.setStatus(Status.toEnum(obj.getStatus()));
         registroDeOcorrencia.setTitulo(obj.getTitulo());

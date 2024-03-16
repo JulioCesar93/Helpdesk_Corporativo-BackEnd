@@ -16,7 +16,7 @@ public class Associado extends Pessoa {
 
     @JsonIgnore
     @OneToMany(mappedBy = "associado")
-    private List<RegistroDeOcorrencia> registroDeOcorrencia = new ArrayList<>();
+    private List<RegistroDeOcorrencia> registroDeOcorrencias = new ArrayList<>();
 
     public Associado() {
         super();
@@ -25,7 +25,7 @@ public class Associado extends Pessoa {
 
     public Associado(Integer id, String nome, String cpf, String email, String senha) {
         super(id, nome, cpf, email, senha);
-        addPerfil(Perfil.CLIENTE);
+        addPerfil(Perfil.ASSOCIADO);
     }
 
     public Associado(AssociadoDTO obj) {
@@ -39,11 +39,11 @@ public class Associado extends Pessoa {
         this.dataCriacao = obj.getDataCriacao();
     }
 
-    public List<RegistroDeOcorrencia> getTickets() {
+    public List<RegistroDeOcorrencia> getRegistroDeOcorrencias() {
         return registroDeOcorrencias;
     }
 
-    public void setTickets(List<RegistroDeOcorrencia> registroDeOcorrencia) {
-        this.registroDeOcorrencia = registroDeOcorrencias;
+    public void setRegistroDeOcorrencias(List<RegistroDeOcorrencia> registroDeOcorrencias) {
+        this.registroDeOcorrencias = registroDeOcorrencias;
     }
 }

@@ -30,23 +30,23 @@ public class RegistroDeOcorrencia implements Serializable {
 
     @ManyToOne
     @JoinColumn(name= "analista_id")
-    private Tecnico tecnico;
+    private Analista analista;
 
     @ManyToOne
     @JoinColumn(name= "associado_id")
-    private Cliente cliente;
+    private Associado associado;
     public RegistroDeOcorrencia(){
         super();
     }
 
-    public RegistroDeOcorrencia(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
+    public RegistroDeOcorrencia(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Analista analista, Associado associado) {
         this.id = id;
         this.prioridade = prioridade;
         this.status = status;
         this.titulo = titulo;
         this.observacoes = observacoes;
-        this.tecnico = tecnico;
-        this.cliente = cliente;
+        this.analista = analista;
+        this.associado = associado;
     }
 
     public Integer getId() {
@@ -105,28 +105,28 @@ public class RegistroDeOcorrencia implements Serializable {
         this.observacoes = observacoes;
     }
 
-    public Tecnico getTecnico() {
-        return tecnico;
+    public Analista getAnalista() {
+        return analista;
     }
 
-    public void setTecnico(Tecnico tecnico) {
-        this.tecnico = tecnico;
+    public void setAnalista(Analista analista) {
+        this.analista = analista;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Associado getAssociado() {
+        return associado;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setAssociado(Associado associado) {
+        this.associado = associado;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ticket ticket = (Ticket) o;
-        return Objects.equals(id, ticket.id);
+        RegistroDeOcorrencia registroDeOcorrencia = (RegistroDeOcorrencia) o;
+        return Objects.equals(id, registroDeOcorrencia.id);
     }
 
     @Override

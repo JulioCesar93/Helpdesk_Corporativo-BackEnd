@@ -59,8 +59,8 @@ public class AnalistaService {
 
     public void delete(Integer id) {
         Analista obj = findById(id);
-        if (obj.getRegistrosDeOcorrencias().size() > 0) {
-            throw new DataIntegrityViolationException("Técnico possui RO's atreladas e não poderá ser apagado");
+        if (obj.getRegistroDeOcorrencias().size() > 0) {
+            throw new DataIntegrityViolationException("Analista possui RO's atreladas e não poderá ser apagado");
         } else {
             repository.deleteById(id);
         }

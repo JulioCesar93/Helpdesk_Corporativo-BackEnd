@@ -43,7 +43,7 @@ public class Analista extends Pessoa {
         return registroDeOcorrencias;
     }
 
-    public void setTickets(List<RegistroDeOcorrencia> registroDeOcorrencias) {
+    public void setRegistroDeOcorrencias(List<RegistroDeOcorrencia> registroDeOcorrencias) {
         this.registroDeOcorrencias = registroDeOcorrencias;
     }
 }

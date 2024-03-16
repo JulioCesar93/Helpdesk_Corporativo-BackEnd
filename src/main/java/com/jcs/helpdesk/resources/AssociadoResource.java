@@ -37,7 +37,7 @@ public class AssociadoResource {
 
     @PatchMapping
     public ResponseEntity<AssociadoDTO> create(@Valid @RequestBody AssociadoDTO objDTO) {
-        Cliente newObj = service.create(objDTO);
+        Associado newObj = service.create(objDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }

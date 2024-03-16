@@ -1,14 +1,14 @@
 package com.jcs.helpdesk.services;
 
-import com.jcs.helpdesk.domain.Cliente;
-import com.jcs.helpdesk.domain.Tecnico;
+import com.jcs.helpdesk.domain.Associado;
+import com.jcs.helpdesk.domain.Analista;
 import com.jcs.helpdesk.domain.RegistroDeOcorrencia;
 import com.jcs.helpdesk.domain.enums.Perfil;
 import com.jcs.helpdesk.domain.enums.Prioridade;
 import com.jcs.helpdesk.domain.enums.Status;
-import com.jcs.helpdesk.repositories.ClienteRepository;
-import com.jcs.helpdesk.repositories.TecnicoRepository;
-import com.jcs.helpdesk.repositories.TicketRepository;
+import com.jcs.helpdesk.repositories.AssociadoRepository;
+import com.jcs.helpdesk.repositories.AnalistaRepository;
+import com.jcs.helpdesk.repositories.RegistroDeOcorrenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,24 +19,24 @@ import java.util.Arrays;
 public class DBService {
 
     @Autowired
-    private TecnicoRepository tecnicoRepository;
+    private AnalistaRepository analistaRepository;
     @Autowired
-    private ClienteRepository clienteRepository;
+    private AssociadoRepository associadoRepository;
     @Autowired
-    private TicketRepository ticketRepository;
+    private RegistroDeOcorrenciaRepository registroDeOcorrenciaRepository;
     @Autowired
     private BCryptPasswordEncoder encoder;
 
     public void instanciaDB() {
-        Tecnico tec1 = new Tecnico(null, "Lemes Gustavo", "52584633035", "Lemesgus@mail.com", encoder.encode("123"));
+        Analista tec1 = new Analista(null, "Lemes Gustavo", "52584633035", "Lemesgus@mail.com", encoder.encode("123"));
         tec1.addPerfil(Perfil.ADMIN);
 
-        Cliente cli1 = new Cliente(null, "Amanda Fernandes", "45082546082", "amandafer261102@mail.com", encoder.encode("123"));
+        Associado cli1 = new Associado(null, "Amanda Fernandes", "45082546082", "amandafer261102@mail.com", encoder.encode("123"));
 
-        RegistroDeOcorrencia sr1 = new RegistroDeOcorrencia(null, Prioridade.MEDIA, Status.ANDAMENTO, "SR-01", "Primeiro RegistroDeOcorrencia", tec1, cli1);
+        RegistroDeOcorrencia sr1 = new RegistroDeOcorrencia(null, Prioridade.MEDIA, Status.ANDAMENTO, "SR-01", "Primeira RegistroDeOcorrencia", tec1, cli1);
 
-        tecnicoRepository.saveAll(Arrays.asList(tec1));
-        clienteRepository.saveAll(Arrays.asList(cli1));
-        ticketRepository.saveAll(Arrays.asList(sr1));
+        analistaRepository.saveAll(Arrays.asList(tec1));
+        associadoRepository.saveAll(Arrays.asList(cli1));
+        registroDeOcorrenciaRepository.saveAll(Arrays.asList(sr1));
     }
 }
