@@ -39,7 +39,7 @@ public class AnalistaService {
     public Analista create(AnalistaDTO objDTO) {
         objDTO.setId(null);
         objDTO.setSenha(encoder.encode(objDTO.getSenha()));
-        validaPorCpfEEmail(objDTO);
+        validaPorMatriculaEEmail(objDTO);
         Analista newObj = new Analista(objDTO);
         return repository.save(newObj);
     }
@@ -52,7 +52,7 @@ public class AnalistaService {
             objDTO.setSenha(encoder.encode(objDTO.getSenha()));
         }
 
-        validaPorCpfEEmail(objDTO);
+        validaPorMatriculaEEmail(objDTO);
         oldObj = new Analista(objDTO);
         return repository.save(oldObj);
     }
@@ -66,8 +66,8 @@ public class AnalistaService {
         }
     }
 
-    private void validaPorCpfEEmail(AnalistaDTO objDTO) {
-        Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
+    private void validaPorMatriculaEEmail(AnalistaDTO objDTO) {
+        Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getMatricula());
         if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema! Favor verificar.");
         }

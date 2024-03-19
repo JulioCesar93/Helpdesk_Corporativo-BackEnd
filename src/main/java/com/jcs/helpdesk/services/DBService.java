@@ -28,10 +28,10 @@ public class DBService {
     private BCryptPasswordEncoder encoder;
 
     public void instanciaDB() {
-        Analista tec1 = new Analista(null, "Lemes Gustavo", "52584633035", "Lemesgus@mail.com", encoder.encode("123"));
+        Analista tec1 = new Analista(null, "Lemes Gustavo", "112233", "Lemesgus@mail.com", encoder.encode("123"));
         tec1.addPerfil(Perfil.ADMIN);
 
-        Associado cli1 = new Associado(null, "Amanda Fernandes", "45082546082", "amandafer261102@mail.com", encoder.encode("123"));
+        Associado cli1 = new Associado(null, "Amanda Fernandes", "261102", "amandafer261102@mail.com", encoder.encode("123"));
 
         RegistroDeOcorrencia sr1 = new RegistroDeOcorrencia(null, Prioridade.MEDIA, Status.ANDAMENTO, "SR-01", "Primeira RegistroDeOcorrencia", tec1, cli1);
 

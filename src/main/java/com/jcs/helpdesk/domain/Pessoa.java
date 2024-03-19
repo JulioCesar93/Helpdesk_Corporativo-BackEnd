@@ -21,7 +21,7 @@ public abstract class Pessoa implements Serializable {
     protected Integer id;
 
     @Column(unique = true)
-    protected Integer matricula;
+    protected String matricula;
     protected String nome;
 
     @CPF
@@ -30,6 +30,7 @@ public abstract class Pessoa implements Serializable {
 
     protected String gerenteMercado;
     protected String gerenteVendas;
+
     @Column(unique = true)
     protected String email;
     protected String senha;
@@ -38,18 +39,20 @@ public abstract class Pessoa implements Serializable {
     @CollectionTable(name = "PERFIS")
     protected Set<Integer> perfis = new HashSet<>();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "CARGOS")
+    protected Set<Integer> cargos = new HashSet<>();
+
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
-
-
 
     public Pessoa() {
         super();
         addPerfil(Perfil.ASSOCIADO);
     }
 
-    public Pessoa(Integer id, String nome, String cpf, String email, String senha,
-                  Integer matricula, String gerenteMercado, String gerenteVendas) {
+    public Pessoa(Integer id, String nome, String matricula, String cpf, String email, String senha,
+                  String gerenteMercado, String gerenteVendas) {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
@@ -57,7 +60,7 @@ public abstract class Pessoa implements Serializable {
         this.email = email;
         this.senha = senha;
         this.gerenteMercado = gerenteMercado;
-        this.gerenteVendas = gerenteMercado;
+        this.gerenteVendas = gerenteVendas;
         addPerfil(Perfil.ASSOCIADO);
     }
 
@@ -117,11 +120,11 @@ public abstract class Pessoa implements Serializable {
         this.dataCriacao = dataCriacao;
     }
 
-    public Integer getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(Integer matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
@@ -129,17 +132,13 @@ public abstract class Pessoa implements Serializable {
         return gerenteMercado;
     }
 
-    public void setGerenteMercado(String gerenteMercado) {
-        this.gerenteMercado = gerenteMercado;
-    }
+    public void setGerenteMercado(String gerenteMercado) { this.gerenteMercado = gerenteMercado;}
 
     public String getGerenteVendas() {
         return gerenteVendas;
     }
 
-    public void setGerenteVendas(String gerenteVendas) {
-        this.gerenteVendas = gerenteVendas;
-    }
+    public void setGerenteVendas(String gerenteVendas) { this.gerenteVendas = gerenteVendas;}
 
     @Override
     public boolean equals(Object o) {

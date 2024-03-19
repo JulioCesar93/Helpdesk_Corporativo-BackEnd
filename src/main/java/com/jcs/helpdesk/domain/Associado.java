@@ -23,8 +23,8 @@ public class Associado extends Pessoa {
         addPerfil(Perfil.ASSOCIADO);
     }
 
-    public Associado(Integer id, String nome, String cpf, String email, String senha) {
-        super(id, nome, cpf, email, senha);
+    public Associado(Integer id, String nome, String matricula, String email, String senha) {
+        super();
         addPerfil(Perfil.ASSOCIADO);
     }
 
@@ -36,6 +36,7 @@ public class Associado extends Pessoa {
         this.email = obj.getEmail();
         this.senha = obj.getSenha();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+        this.cargos = obj.getCargos().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
     }
 

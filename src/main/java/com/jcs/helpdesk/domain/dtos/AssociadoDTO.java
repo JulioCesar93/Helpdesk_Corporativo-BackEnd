@@ -2,6 +2,7 @@ package com.jcs.helpdesk.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jcs.helpdesk.domain.Associado;
+import com.jcs.helpdesk.domain.enums.Cargo;
 import com.jcs.helpdesk.domain.enums.Perfil;
 
 import javax.validation.constraints.NotNull;
@@ -15,18 +16,24 @@ public class AssociadoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected Integer id;
+
     @NotNull(message = "Campo NOME obrigatório")
-    protected Integer matricula;
+    protected String nome;
+
+    @NotNull(message = "Campo Matricula obrigatório")
+    protected String matricula;
+
     protected String gerenteMercado;
     protected String gerenteVendas;
-    protected String nome;
-    @NotNull(message = "Campo CPF obrigatório")
     protected String cpf;
+
     @NotNull(message = "Campo E-MAIL obrigatório")
     protected String email;
+
     @NotNull(message = "Campo SENHA obrigatório")
     protected String senha;
     protected Set<Integer> perfis = new HashSet<>();
+    protected Set<Integer> cargos = new HashSet<>();
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
@@ -47,8 +54,23 @@ public class AssociadoDTO implements Serializable {
         this.email = obj.getEmail();
         this.senha = obj.getSenha();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+        //this.cargos = obj.getCargos().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
         addPerfil(Perfil.ASSOCIADO);
+    }
+
+    public Set<Perfil> getPerfis() {
+        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+    }
+    public void addPerfil(Perfil perfil) {
+        this.perfis.add(perfil.getCodigo());
+    }
+
+    public Set<Cargo> getCargos() {
+        return cargos.stream().map(x -> Cargo.toEnum(x)).collect(Collectors.toSet());
+    }
+    public void addCargo(Perfil cargo) {
+        this.perfis.add(cargo.getCodigo());
     }
 
     public Integer getId() {
@@ -91,14 +113,6 @@ public class AssociadoDTO implements Serializable {
         this.senha = senha;
     }
 
-    public Set<Perfil> getPerfis() {
-        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
-    }
-
-    public void addPerfil(Perfil perfil) {
-        this.perfis.add(perfil.getCodigo());
-    }
-
     public LocalDate getDataCriacao() {
         return dataCriacao;
     }
@@ -107,11 +121,11 @@ public class AssociadoDTO implements Serializable {
         this.dataCriacao = dataCriacao;
     }
 
-    public Integer getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(Integer matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

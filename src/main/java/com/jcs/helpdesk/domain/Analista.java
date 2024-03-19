@@ -22,9 +22,8 @@ public class Analista extends Pessoa {
         super();
         addPerfil(Perfil.ASSOCIADO);
     }
-
-    public Analista(Integer id, String nome, String cpf, String email, String senha) {
-        super(id, nome, cpf, email, senha);
+    public Analista(Integer id, String nome, String matricula, String email, String senha) {
+        super();
         addPerfil(Perfil.ASSOCIADO);
     }
 
@@ -32,7 +31,7 @@ public class Analista extends Pessoa {
         super();
         this.id = obj.getId();
         this.nome = obj.getNome();
-        this.cpf = obj.getCpf();
+        this.matricula = obj.getMatricula();
         this.email = obj.getEmail();
         this.senha = obj.getSenha();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
@@ -40,6 +39,7 @@ public class Analista extends Pessoa {
     }
 
     public List<RegistroDeOcorrencia> getRegistroDeOcorrencias() {
+
         return registroDeOcorrencias;
     }
 

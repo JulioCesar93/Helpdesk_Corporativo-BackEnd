@@ -15,14 +15,19 @@ public class AnalistaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected Integer id;
+
     @NotNull(message = "Campo NOME obrigatório")
     protected String nome;
-    @NotNull(message = "Campo CPF obrigatório")
-    protected String cpf;
+
+    @NotNull(message = "Campo Matricula obrigatório")
+    protected String matricula;
+
     @NotNull(message = "Campo E-MAIL obrigatório")
     protected String email;
+
     @NotNull(message = "Campo SENHA obrigatório")
     protected String senha;
+
     protected Set<Integer> perfis = new HashSet<>();
 
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -37,9 +42,9 @@ public class AnalistaDTO implements Serializable {
         super();
         this.id = obj.getId();
         this.nome = obj.getNome();
-        this.cpf = obj.getCpf();
         this.email = obj.getEmail();
         this.senha = obj.getSenha();
+        this.matricula = obj.getMatricula();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
         addPerfil(Perfil.ASSOCIADO);
@@ -61,13 +66,11 @@ public class AnalistaDTO implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+    public void setMatricula(String matricula) { this.matricula = matricula;}
 
     public String getEmail() {
         return email;

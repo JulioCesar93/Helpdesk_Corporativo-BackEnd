@@ -39,7 +39,7 @@ public class AssociadoService {
     public Associado create(AssociadoDTO objDTO) {
         objDTO.setId(null);
         objDTO.setSenha(encoder.encode(objDTO.getSenha()));
-        validaPorCpfEEmail(objDTO);
+        validaPorMatriculaEEmail(objDTO);
         Associado newObj = new Associado(objDTO);
         return repository.save(newObj);
     }
@@ -52,7 +52,7 @@ public class AssociadoService {
             objDTO.setSenha(encoder.encode(objDTO.getSenha()));
         }
 
-        validaPorCpfEEmail(objDTO);
+        validaPorMatriculaEEmail(objDTO);
         oldObj = new Associado(objDTO);
         return repository.save(oldObj);
     }
@@ -66,7 +66,7 @@ public class AssociadoService {
         }
     }
 
-    private void validaPorCpfEEmail(AssociadoDTO objDTO) {
+    private void validaPorMatriculaEEmail(AssociadoDTO objDTO) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
         if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema! Favor verificar.");
