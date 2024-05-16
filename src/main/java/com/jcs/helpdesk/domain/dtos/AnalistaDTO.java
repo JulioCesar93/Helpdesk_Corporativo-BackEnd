@@ -16,11 +16,11 @@ public class AnalistaDTO implements Serializable {
 
     protected Integer id;
 
-    @NotNull(message = "Campo NOME obrigatório")
-    protected String nome;
-
     @NotNull(message = "Campo Matricula obrigatório")
     protected String matricula;
+
+    @NotNull(message = "Campo NOME obrigatório")
+    protected String nome;
 
     @NotNull(message = "Campo E-MAIL obrigatório")
     protected String email;

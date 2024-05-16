@@ -20,8 +20,10 @@ public class RegistroDeOcorrenciaService {
 
     @Autowired
     private RegistroDeOcorrenciaRepository repository;
+
     @Autowired
     private AnalistaService analistaService;
+
     @Autowired
     private AssociadoService associadoService;
 

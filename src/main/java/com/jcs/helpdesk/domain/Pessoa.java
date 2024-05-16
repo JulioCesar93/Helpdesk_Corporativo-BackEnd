@@ -1,8 +1,8 @@
 package com.jcs.helpdesk.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jcs.helpdesk.domain.enums.Cargo;
 import com.jcs.helpdesk.domain.enums.Perfil;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,12 +22,8 @@ public abstract class Pessoa implements Serializable {
 
     @Column(unique = true)
     protected String matricula;
+
     protected String nome;
-
-    @CPF
-    @Column(unique = true)
-    protected String cpf;
-
     protected String gerenteMercado;
     protected String gerenteVendas;
 
@@ -49,6 +45,7 @@ public abstract class Pessoa implements Serializable {
     public Pessoa() {
         super();
         addPerfil(Perfil.ASSOCIADO);
+        addCargo(Cargo.REPRESENTANTE);
     }
 
     public Pessoa(Integer id, String nome, String matricula, String cpf, String email, String senha,
@@ -56,12 +53,12 @@ public abstract class Pessoa implements Serializable {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
-        this.cpf = cpf;
         this.email = email;
         this.senha = senha;
         this.gerenteMercado = gerenteMercado;
         this.gerenteVendas = gerenteVendas;
         addPerfil(Perfil.ASSOCIADO);
+        addCargo(Cargo.REPRESENTANTE);
     }
 
     public Integer getId() {
@@ -78,14 +75,6 @@ public abstract class Pessoa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getEmail() {
@@ -110,6 +99,14 @@ public abstract class Pessoa implements Serializable {
 
     public void addPerfil(Perfil perfil) {
         this.perfis.add(perfil.getCodigo());
+    }
+
+    public Set<Cargo> getCargos() {
+        return cargos.stream().map(x -> Cargo.toEnum(x)).collect(Collectors.toSet());
+    }
+
+    public void addCargo(Cargo cargo) {
+        this.cargos.add(cargo.getCodigo());
     }
 
     public LocalDate getDataCriacao() {

@@ -2,7 +2,9 @@ package com.jcs.helpdesk.domain.enums;
 
 public enum Perfil {
 
-    ADMIN(0, "PROFILE_ADMIN"), ASSOCIADO(1, "PROFILE_ASSOCIADO"), ANALISTA(2, "PROFILE_ANALISTA");
+    ASSOCIADO(1, "PROFILE_ASSOCIADO"),
+    ADMIN(0, "PROFILE_ADMIN"),
+    ANALISTA(2, "PROFILE_ANALISTA");
 
     private Integer codigo;
     private String descricao;
