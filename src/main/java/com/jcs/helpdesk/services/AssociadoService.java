@@ -67,9 +67,9 @@ public class AssociadoService {
     }
 
     private void validaPorMatriculaEEmail(AssociadoDTO objDTO) {
-        Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
+        Optional<Pessoa> obj = pessoaRepository.findByMatricula(objDTO.getMatricula());
         if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
-            throw new DataIntegrityViolationException("CPF já cadastrado no sistema! Favor verificar.");
+            throw new DataIntegrityViolationException("Matrícula já consta em no sistema! Favor verificar.");
         }
 
         obj = pessoaRepository.findByEmail(objDTO.getEmail());

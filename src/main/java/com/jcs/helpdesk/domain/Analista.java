@@ -20,11 +20,11 @@ public class Analista extends Pessoa {
 
     public Analista() {
         super();
-        addPerfil(Perfil.ASSOCIADO);
+        addPerfil(Perfil.ANALISTA);
     }
     public Analista(Integer id, String nome, String matricula, String email, String senha) {
         super();
-        addPerfil(Perfil.ASSOCIADO);
+        addPerfil(Perfil.ANALISTA);
     }
 
     public Analista(AnalistaDTO obj) {

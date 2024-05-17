@@ -25,13 +25,13 @@ public class AssociadoDTO implements Serializable {
 
     protected String gerenteMercado;
     protected String gerenteVendas;
-    protected String cpf;
 
     @NotNull(message = "Campo E-MAIL obrigatório")
     protected String email;
 
     @NotNull(message = "Campo SENHA obrigatório")
     protected String senha;
+
     protected Set<Integer> perfis = new HashSet<>();
     protected Set<Integer> cargos = new HashSet<>();
 
@@ -41,6 +41,7 @@ public class AssociadoDTO implements Serializable {
     public AssociadoDTO() {
         super();
         addPerfil(Perfil.ASSOCIADO);
+        addCargo(Cargo.REPRESENTANTE);
     }
 
     public AssociadoDTO(Associado obj) {
@@ -50,13 +51,13 @@ public class AssociadoDTO implements Serializable {
         this.matricula = obj.getMatricula();
         this.gerenteMercado = obj.getGerenteMercado();
         this.gerenteVendas = obj.getGerenteVendas();
-        this.cpf = obj.getCpf();
         this.email = obj.getEmail();
         this.senha = obj.getSenha();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
-        //this.cargos = obj.getCargos().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+        this.cargos = obj.getCargos().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
         addPerfil(Perfil.ASSOCIADO);
+        addCargo(Cargo.REPRESENTANTE);
     }
 
     public Set<Perfil> getPerfis() {
@@ -69,8 +70,8 @@ public class AssociadoDTO implements Serializable {
     public Set<Cargo> getCargos() {
         return cargos.stream().map(x -> Cargo.toEnum(x)).collect(Collectors.toSet());
     }
-    public void addCargo(Perfil cargo) {
-        this.perfis.add(cargo.getCodigo());
+    public void addCargo(Cargo cargo) {
+        this.cargos.add(cargo.getCodigo());
     }
 
     public Integer getId() {
@@ -87,14 +88,6 @@ public class AssociadoDTO implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getEmail() {

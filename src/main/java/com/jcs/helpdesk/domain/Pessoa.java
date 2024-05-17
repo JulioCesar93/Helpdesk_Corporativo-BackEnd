@@ -48,7 +48,7 @@ public abstract class Pessoa implements Serializable {
         addCargo(Cargo.REPRESENTANTE);
     }
 
-    public Pessoa(Integer id, String nome, String matricula, String cpf, String email, String senha,
+    public Pessoa(Integer id, String nome, String matricula, String email, String senha,
                   String gerenteMercado, String gerenteVendas) {
         this.id = id;
         this.nome = nome;

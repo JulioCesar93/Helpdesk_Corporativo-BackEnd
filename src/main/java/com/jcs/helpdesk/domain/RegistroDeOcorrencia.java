@@ -1,6 +1,7 @@
 package com.jcs.helpdesk.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jcs.helpdesk.domain.enums.CategoriaRO;
 import com.jcs.helpdesk.domain.enums.Prioridade;
 import com.jcs.helpdesk.domain.enums.Status;
 
@@ -23,6 +24,7 @@ public class RegistroDeOcorrencia implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
 
+    private CategoriaRO categoriaRO;
     private Prioridade prioridade;
     private Status status;
     private String titulo;
@@ -35,18 +37,21 @@ public class RegistroDeOcorrencia implements Serializable {
     @ManyToOne
     @JoinColumn(name= "associado_id")
     private Associado associado;
+
     public RegistroDeOcorrencia(){
         super();
     }
 
     public RegistroDeOcorrencia(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Analista analista, Associado associado) {
         this.id = id;
+        this.categoriaRO = categoriaRO;
         this.prioridade = prioridade;
         this.status = status;
         this.titulo = titulo;
         this.observacoes = observacoes;
         this.analista = analista;
         this.associado = associado;
+
     }
 
     public Integer getId() {
@@ -79,6 +84,14 @@ public class RegistroDeOcorrencia implements Serializable {
 
     public void setPrioridade(Prioridade prioridade) {
         this.prioridade = prioridade;
+    }
+
+    public CategoriaRO getCategoriaRO() {
+        return categoriaRO;
+    }
+
+    public void setCategoriaRO(CategoriaRO categoriaRO) {
+        this.categoriaRO = categoriaRO;
     }
 
     public Status getStatus() {
