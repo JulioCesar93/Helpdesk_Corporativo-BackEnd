@@ -1,6 +1,10 @@
 # HelpDesk Corporativo - Abertura de Ocorrências / Tickets
 Back-End em Java contendo a parte lógica tais como regras de negócio, API, requisições.
 
+## Principais Tecnologias
+ - **Java 17**: Utilizada versão LTS mais recente do Java;
+ - **Spring Boot 3**: Utilizada versão 2.3.12 do Spring Boot;
+ - **Spring Data JPA**: Integração com bancos de dados SQL;
 
 ## Diagrama de Classes (Domínio da API)
 
