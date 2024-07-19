@@ -11,7 +11,7 @@ Back-End em Java contendo a parte lógica tais como regras de negócio, API, req
 ```mermaid
 classDiagram
   class RegistroDeOcorrencia {
-    - Integer id;
+    - Integer id
     - Associado [] associado
     - LocalDate dataAbertura
     - LocalDate dataFechamento
